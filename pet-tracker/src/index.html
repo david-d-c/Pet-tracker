@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Tracker</title>
+    <script defer src="./server.js"></script>
+</head>
+
+<body>
+    <h1>Pet Tracker</h1>
+    <form aria-label="pet">
+
+        <h2>Add a new Pet!</h2>
+
+        <label for="name">Pet Name <sup>*</sup>:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="pic">Profile Picture <sup>*</sup></label>
+        <input type="text" id="pic" name="picture" placeholder="Picture URL" required>
+
+
+        <fieldset>
+            <legend>Species <sup>*</sup></legend>
+
+            <input type="radio" name="animal" id="cat" value="cat" required>
+            <label for="cat">Cat</label>
+
+            <input type="radio" name="animal" id="dog" value="dog" required> 
+            <label for="dog">Dog</label>
+
+            <input type="radio" name="animal" id="bird" value="bird" required>
+            <label for="bird">Bird</label>
+        </fieldset>
+        <div id="checkbox">
+        <input type="checkbox" id="friendly">
+        <label for="friendly">Are they friendly</label>
+    </div>
+
+        <button>Add Pet!</button>
+
+    </form>
+
+    <h2>Pet List</h2>
+
+
+    <style>
+        img {
+            height: 15rem;
+        }
+
+        sup {
+            color: red;
+        }
+
+        form,
+        ul {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border: 0.1rem solid #000;
+        }
+
+        form {
+            flex-direction: column;
+            width: fit-content;
+        }
+
+        #pet-list {
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        #checkbox{
+            display: flex;
+        }
+    </style>
+</body>
+
+</html>
