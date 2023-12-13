@@ -1,35 +1,4 @@
-document.querySelector('form').addEventListener('submit', e => {
-    e.preventDefault()
-    const formData = new FormData(e.target)
-    const petObj = Object.fromEntries(formData);
-    e.target.reset()
-
-    fetch('/addPet', {
-        method: 'POST',
-        headers: {
-            "Content-Type": 'application/json'
-        },
-        body: JSON.stringify(petObj)
-    })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return res.json();
-        })
-        .then(data => {
-            renderPet(data)
-        })
-        .catch(error => {
-            // Handle any errors that occur during the fetch or JSON parsing
-            console.error('Error:', error);
-        });
-})
-
-
-
-
-function renderPet(data){
+const renderPet = (data) => {
     const { id, name, picture, species, friendly } = data
 
     const newPet = document.createElement('li')
@@ -61,8 +30,35 @@ function renderPet(data){
 const listPets = async () => {
     let res = await fetch('/getPets')
     let data = await res.json()
-    console.log(data)
     data.forEach(pet => renderPet(pet))
 }
 
 listPets()
+
+document.querySelector('form').addEventListener('submit', e => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const petObj = Object.fromEntries(formData);
+    e.target.reset()
+
+    fetch('/addPet', {
+        method: 'POST',
+        headers: {
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(petObj)
+    })
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return res.json();
+        })
+        .then(data => {
+            renderPet(data)
+        })
+        .catch(error => {
+            // Handle any errors that occur during the fetch or JSON parsing
+            console.error('Error:', error);
+        });
+})
